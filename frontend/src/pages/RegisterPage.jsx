@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../components/Auth/RegisterForm';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext.js';
 
 const RegisterPage = () => {
   const [error, setError] = useState(null);
