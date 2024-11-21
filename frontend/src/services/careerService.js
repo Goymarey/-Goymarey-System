@@ -3,7 +3,7 @@ import authService from './authService';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
-class CareerService {
+const careerService = {
   async getAllApplications(filters = {}) {
     try {
       const response = await axios.get(
@@ -17,7 +17,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async getApplicationById(applicationId) {
     try {
@@ -29,38 +29,9 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
-  async submitApplication(applicationData) {
-    try {
-      const formData = new FormData();
-      
-      // Append application data
-      Object.keys(applicationData).forEach(key => {
-        if (key === 'resume' || key === 'coverLetter') {
-          formData.append(key, applicationData[key]);
-        } else {
-          formData.append(key, JSON.stringify(applicationData[key]));
-        }
-      });
-
-      const response = await axios.post(
-        `${API_URL}/careers/applications`,
-        formData,
-        {
-          ...authService.getAuthHeader(),
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async updateApplicationStatus(applicationId, status, notes = '') {
+  async updateApplicationStatus(applicationId, status, notes) {
     try {
       const response = await axios.patch(
         `${API_URL}/careers/applications/${applicationId}/status`,
@@ -71,7 +42,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async scheduleInterview(applicationId, interviewData) {
     try {
@@ -84,7 +55,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async getJobPostings(filters = {}) {
     try {
@@ -99,7 +70,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async createJobPosting(jobData) {
     try {
@@ -112,7 +83,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async updateJobPosting(jobId, jobData) {
     try {
@@ -125,7 +96,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async deleteJobPosting(jobId) {
     try {
@@ -137,7 +108,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   async addInterviewFeedback(applicationId, interviewId, feedback) {
     try {
@@ -150,7 +121,7 @@ class CareerService {
     } catch (error) {
       throw this.handleError(error);
     }
-  }
+  },
 
   handleError(error) {
     if (error.response) {
@@ -170,6 +141,6 @@ class CareerService {
       };
     }
   }
-}
+};
 
-export default CareerService();
+export default careerService;
