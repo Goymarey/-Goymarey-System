@@ -9,7 +9,7 @@ import Sidebar from './components/Sidebar.jsx';
 import Footer from './components/Footer.jsx/index.js';
 
 // Pages
-import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage.jsx/index.js';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProjectPage from './pages/ProjectPage';
