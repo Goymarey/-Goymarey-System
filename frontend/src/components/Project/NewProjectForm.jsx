@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useProject } from '../../contexts/ProjectContext';
+import { useProject } from '../../contexts/ProjectContext.js';
 
 const NewProjectForm = ({ onClose }) => {
   const [projectData, setProjectData] = useState({
