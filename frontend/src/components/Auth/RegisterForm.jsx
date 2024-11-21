@@ -119,3 +119,5 @@ const RegisterForm = ({ onSubmit }) => {
     </form>
   );
 };
+
+export default RegisterForm;

@@ -85,3 +85,5 @@ const LoginForm = ({ onSubmit }) => {
     </form>
   );
 };
+
+export default LoginForm;
