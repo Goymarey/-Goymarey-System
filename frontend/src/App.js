@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import DashboardHome from './components/Dashboard/DashboardHome';
 
 // Pages
-import HomePage from './pages/HomePage.jsx/index.js';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProjectPage from './pages/ProjectPage';
@@ -18,7 +18,7 @@ import TaskPage from './pages/TaskPage';
 import AppointmentPage from './pages/AppointmentPage';
 import CareerPage from './pages/CareerPage';
 
-// // Contexts
+// Contexts
 import { useAuth } from './hooks/useAuth';
 
 function App() {
