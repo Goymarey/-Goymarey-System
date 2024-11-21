@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useProject } from '../../contexts/ProjectContext.js';
+import { ProjectContext } from '../../contexts/ProjectContext.js';
 
 const NewProjectForm = ({ onClose }) => {
   const [projectData, setProjectData] = useState({
@@ -11,7 +11,7 @@ const NewProjectForm = ({ onClose }) => {
     priority: 'Medium'
   });
 
-  const { createProject } = useProject();
+  const { createProject } = ProjectContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
