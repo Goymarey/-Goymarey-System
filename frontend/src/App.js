@@ -5,19 +5,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Layout Components
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar.jsx';
-import Footer from './components/Footer.jsx/index.js';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import DashboardHome from './components/Dashboard/DashboardHome';
 
 // Pages
-import HomePage from './pages/HomePage.jsx/index.js';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ProjectPage from './pages/ProjectPage';
-import TaskPage from './pages/TaskPage';
-import AppointmentPage from './pages/AppointmentPage';
-import CareerPage from './pages/CareerPage';
+// import HomePage from './pages/HomePage.jsx/index.js';
+// import LoginPage from './pages/LoginPage';
+// import RegisterPage from './pages/RegisterPage';
+// import ProjectPage from './pages/ProjectPage';
+// import TaskPage from './pages/TaskPage';
+// import AppointmentPage from './pages/AppointmentPage';
+// import CareerPage from './pages/CareerPage';
 
-// Contexts
+// // Contexts
 import { useAuth } from './hooks/useAuth';
 
 function App() {
