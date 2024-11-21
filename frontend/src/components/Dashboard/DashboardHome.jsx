@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   ClipboardListIcon, 
-  TaskIcon, 
   CalendarIcon, 
   BriefcaseIcon 
 } from 'lucide-react';
@@ -24,12 +23,12 @@ const DashboardHome = () => {
       icon: <ClipboardListIcon size={40} className="text-blue-500" />,
       color: 'border-l-4 border-blue-500'
     },
-    {
-      title: 'Active Tasks',
-      value: '45',
-      icon: <TaskIcon size={40} className="text-green-500" />,
-      color: 'border-l-4 border-green-500'
-    },
+    // {
+    //   title: 'Active Tasks',
+    //   value: '45',
+    //   icon: <TaskIcon size={40} className="text-green-500" />,
+    //   color: 'border-l-4 border-green-500'
+    // },
     {
       title: 'Upcoming Appointments',
       value: '7',

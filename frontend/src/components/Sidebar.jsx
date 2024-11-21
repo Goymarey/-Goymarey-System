@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { 
   HomeIcon, 
   ClipboardListIcon, 
-  TaskIcon, 
   CalendarIcon, 
   BriefcaseIcon, 
   SettingsIcon 
@@ -23,11 +22,11 @@ const Sidebar = () => {
       icon: <ClipboardListIcon size={20} />, 
       path: '/projects' 
     },
-    { 
-      label: 'Tasks', 
-      icon: <TaskIcon size={20} />, 
-      path: '/tasks' 
-    },
+    // { 
+    //   label: 'Tasks', 
+    //   icon: <TaskIcon size={20} />, 
+    //   path: '/tasks' 
+    // },
     { 
       label: 'Appointments', 
       icon: <CalendarIcon size={20} />, 
