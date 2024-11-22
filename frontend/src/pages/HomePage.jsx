@@ -1,48 +1,37 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import '../styles/pages.css';
 
 const HomePage = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="container mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Welcome to Goymarey PMS</h1>
+    <div className="home-container">
+      <div className="home-content">
+        <h1>Welcome to Goymarey PMS</h1>
         
         {user ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Link 
-              to="/projects" 
-              className="bg-white p-4 rounded-lg shadow hover:bg-blue-50 transition"
-            >
-              <h2 className="text-xl font-semibold">Projects</h2>
+          <div className="dashboard-grid">
+            <Link to="/projects" className="dashboard-card">
+              <h2>Projects</h2>
               <p>Manage and track your projects</p>
             </Link>
             
-            <Link 
-              to="/tasks" 
-              className="bg-white p-4 rounded-lg shadow hover:bg-blue-50 transition"
-            >
-              <h2 className="text-xl font-semibold">Tasks</h2>
+            <Link to="/tasks" className="dashboard-card">
+              <h2>Tasks</h2>
               <p>View and update your tasks</p>
             </Link>
             
-            <Link 
-              to="/appointments" 
-              className="bg-white p-4 rounded-lg shadow hover:bg-blue-50 transition"
-            >
-              <h2 className="text-xl font-semibold">Appointments</h2>
+            <Link to="/appointments" className="dashboard-card">
+              <h2>Appointments</h2>
               <p>Schedule and manage appointments</p>
             </Link>
           </div>
         ) : (
-          <div className="text-center">
-            <p className="mb-4">Please log in to access the system</p>
-            <Link 
-              to="/login" 
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-            >
+          <div className="login-prompt">
+            <p>Please log in to access the system</p>
+            <Link to="/login" className="primary-button">
               Login
             </Link>
           </div>

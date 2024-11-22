@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
-class authService {
+class AuthService {
   async login(email, password) {
     try {
       const response = await axios.post(`${API_URL}/auth/login`, {
@@ -102,4 +102,4 @@ class authService {
   }
 }
 
-export default authService();
+export default new AuthService();

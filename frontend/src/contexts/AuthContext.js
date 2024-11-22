@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
 import authService from '../services/authService';
 
 export const AuthContext = createContext(null);
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const userData = await authService.getCurrentUser();
+        const userData = authService.getCurrentUser();
         setUser(userData);
         setIsAuthenticated(true);
       }
@@ -24,6 +24,10 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
 
   const login = async (credentials) => {
     const { token, user: userData } = await authService.login(credentials);
@@ -40,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await authService.logout();
+      authService.logout();
     } finally {
       localStorage.removeItem('token');
       setUser(null);

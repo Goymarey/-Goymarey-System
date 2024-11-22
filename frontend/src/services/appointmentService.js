@@ -143,4 +143,4 @@ class AppointmentService {
   }
 }
 
-export default AppointmentService();
+export default new AppointmentService();

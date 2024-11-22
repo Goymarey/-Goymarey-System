@@ -3,11 +3,11 @@ import authService from './authService';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
-class TaskService {
-  async getAllTasks(filters = {}) {
+class CareerService {
+  async getAllApplications(filters = {}) {
     try {
       const response = await axios.get(
-        `${API_URL}/tasks`,
+        `${API_URL}/careers/applications`,
         {
           params: filters,
           ...authService.getAuthHeader()
@@ -19,10 +19,10 @@ class TaskService {
     }
   }
 
-  async getTaskById(taskId) {
+  async getApplicationById(applicationId) {
     try {
       const response = await axios.get(
-        `${API_URL}/tasks/${taskId}`,
+        `${API_URL}/careers/applications/${applicationId}`,
         authService.getAuthHeader()
       );
       return response.data;
@@ -31,12 +31,28 @@ class TaskService {
     }
   }
 
-  async createTask(taskData) {
+  async submitApplication(applicationData) {
     try {
+      const formData = new FormData();
+      
+      // Append application data
+      Object.keys(applicationData).forEach(key => {
+        if (key === 'resume' || key === 'coverLetter') {
+          formData.append(key, applicationData[key]);
+        } else {
+          formData.append(key, JSON.stringify(applicationData[key]));
+        }
+      });
+
       const response = await axios.post(
-        `${API_URL}/tasks`,
-        taskData,
-        authService.getAuthHeader()
+        `${API_URL}/careers/applications`,
+        formData,
+        {
+          ...authService.getAuthHeader(),
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
       );
       return response.data;
     } catch (error) {
@@ -44,49 +60,11 @@ class TaskService {
     }
   }
 
-  async updateTask(taskId, taskData) {
-    try {
-      const response = await axios.put(
-        `${API_URL}/tasks/${taskId}`,
-        taskData,
-        authService.getAuthHeader()
-      );
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async deleteTask(taskId) {
-    try {
-      const response = await axios.delete(
-        `${API_URL}/tasks/${taskId}`,
-        authService.getAuthHeader()
-      );
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async assignTask(taskId, userId) {
-    try {
-      const response = await axios.post(
-        `${API_URL}/tasks/${taskId}/assign`,
-        { userId },
-        authService.getAuthHeader()
-      );
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async updateTaskStatus(taskId, status) {
+  async updateApplicationStatus(applicationId, status, notes = '') {
     try {
       const response = await axios.patch(
-        `${API_URL}/tasks/${taskId}/status`,
-        { status },
+        `${API_URL}/careers/applications/${applicationId}/status`,
+        { status, notes },
         authService.getAuthHeader()
       );
       return response.data;
@@ -95,11 +73,11 @@ class TaskService {
     }
   }
 
-  async addTaskComment(taskId, comment) {
+  async scheduleInterview(applicationId, interviewData) {
     try {
       const response = await axios.post(
-        `${API_URL}/tasks/${taskId}/comments`,
-        { comment },
+        `${API_URL}/careers/applications/${applicationId}/interviews`,
+        interviewData,
         authService.getAuthHeader()
       );
       return response.data;
@@ -108,10 +86,64 @@ class TaskService {
     }
   }
 
-  async getTaskDependencies(taskId) {
+  async getJobPostings(filters = {}) {
     try {
       const response = await axios.get(
-        `${API_URL}/tasks/${taskId}/dependencies`,
+        `${API_URL}/careers/jobs`,
+        {
+          params: filters,
+          ...authService.getAuthHeader()
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  async createJobPosting(jobData) {
+    try {
+      const response = await axios.post(
+        `${API_URL}/careers/jobs`,
+        jobData,
+        authService.getAuthHeader()
+      );
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  async updateJobPosting(jobId, jobData) {
+    try {
+      const response = await axios.put(
+        `${API_URL}/careers/jobs/${jobId}`,
+        jobData,
+        authService.getAuthHeader()
+      );
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  async deleteJobPosting(jobId) {
+    try {
+      const response = await axios.delete(
+        `${API_URL}/careers/jobs/${jobId}`,
+        authService.getAuthHeader()
+      );
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  async addInterviewFeedback(applicationId, interviewId, feedback) {
+    try {
+      const response = await axios.post(
+        `${API_URL}/careers/applications/${applicationId}/interviews/${interviewId}/feedback`,
+        feedback,
         authService.getAuthHeader()
       );
       return response.data;
@@ -140,4 +172,4 @@ class TaskService {
   }
 }
 
-export default TaskService();
+export default new CareerService();

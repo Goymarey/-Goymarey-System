@@ -1,43 +1,185 @@
-/* global.css */
+/* Reset and Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-50: #e6f1fe;
+  --primary-100: #bdd9fc;
+  --primary-200: #94c1fa;
+  --primary-300: #6ba9f8;
+  --primary-400: #4291f6;
+  --primary-500: #1976D2;
+  --primary-600: #156cbd;
+  --primary-700: #1161a8;
+  --primary-800: #0d5793;
+  --primary-900: #094d7e;
+  
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--neutral-800);
+  background-color: var(--neutral-50);
+  line-height: 1.5;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: #1DA1F2; /* Blue theme color */
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  a {
-    color: #1DA1F2;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
   }
-  
-  a:hover {
-    text-decoration: underline;
-    color: #0a8bce;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  nav {
-    background-color: #1DA1F2;
-    color: #FFFFFF;
-    padding: 1rem;
-  }
-  
-  nav a {
-    color: #FFFFFF;
-    margin-right: 1rem;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  nav a:hover {
-    color: #0a8bce;
-  }
-  
+}
+
+/* Utility Classes */
+.page-transition {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.fade-up {
+  animation: slideInUp 0.4s ease-out;
+}
+
+/* Component-specific animations */
+.sidebar-item:hover {
+  transform: translateX(4px);
+  transition: transform 0.2s ease;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.input-focus-ring {
+  transition: all 0.2s ease;
+}
+
+.input-focus-ring:focus {
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* Button Animations */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* Loading States */
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    var(--neutral-100) 0%,
+    var(--neutral-200) 50%,
+    var(--neutral-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Toast Notifications */
+.toast {
+  animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in forwards 2.7s;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Progress Bars */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShimmer 1.5s infinite;
+}
+
+@keyframes progressShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}

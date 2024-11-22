@@ -3,7 +3,7 @@ import authService from './authService';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
-class projectService {
+class ProjectService {
   async getAllProjects(filters = {}) {
     try {
       const response = await axios.get(
@@ -126,4 +126,4 @@ class projectService {
   }
 }
 
-export default projectService();
+export default new ProjectService();
