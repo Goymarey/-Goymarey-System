@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card.jsx';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { careerService } from '../../services/careerService';
