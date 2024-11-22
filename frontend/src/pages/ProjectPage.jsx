@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import ProjectList from '../components/Project/ProjectList';
 import NewProjectForm from '../components/Project/NewProjectForm';
-import { useProject } from '../contexts/ProjectContext';
+import { ProjectContext } from '../contexts/ProjectContext';
 
 const ProjectPage = () => {
   const [showNewProjectForm, setShowNewProjectForm] = useState(false);
-  const { projects } = useProject();
+  const { projects } = ProjectContext();
 
   return (
     <div className="container mx-auto p-6">
