@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card.jsx';
-import { Button } from '@/components/ui/button';
+import { Button } from '../ui/button.jsx/index.js';
 import { Search } from 'lucide-react';
 import { careerService } from '../../services/careerService';
 
