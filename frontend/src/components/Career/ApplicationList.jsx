@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card.jsx';
-import { Button } from '../ui/button.jsx/index.js';
+import { Button } from '../ui/button.jsx';
 import { Search } from 'lucide-react';
-import { careerService } from '../../services/careerService';
-
+import careerService from '../../services/careerService';
 const ApplicationList = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);

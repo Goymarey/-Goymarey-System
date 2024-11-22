@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
-import { careerService } from '../../services/careerService';
-
+import careerService from '../../services/careerService';
 const NewApplicationForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
