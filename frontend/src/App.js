@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import DashboardHome from './components/Dashboard/DashboardHome';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -22,7 +21,7 @@ import CareerPage from './pages/CareerPage';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const PrivateRoute = ({ children }) => {
     return isAuthenticated ? (
